@@ -1,0 +1,24 @@
+---
+import { useEffect } from 'react';
+import './animations.css';
+
+const AnimationSection = () => {
+  useEffect(() => {
+    const animateElements = document.querySelectorAll('.animate');
+    animateElements.forEach((element) => {
+      element.classList.add('fade-in');
+    });
+  }, []);
+
+  return (
+    <section class="animation-section">
+      <div class="animation-container">
+        <div class="animate item-1">Animation 1</div>
+        <div class="animate item-2">Animation 2</div>
+        <div class="animate item-3">Animation 3</div>
+      </div>
+    </section>
+  );
+};
+
+export default AnimationSection;

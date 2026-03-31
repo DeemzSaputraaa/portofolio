@@ -1,0 +1,33 @@
+---
+import { useState } from 'react';
+
+const Header = () => {
+  const [isMenuOpen, setMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setMenuOpen(!isMenuOpen);
+  };
+
+  return (
+    <header class="bg-white shadow">
+      <div class="container mx-auto flex justify-between items-center p-4">
+        <div class="logo">
+          <a href="/" class="text-2xl font-bold text-blue-600">Kata.ai</a>
+        </div>
+        <nav class={`nav ${isMenuOpen ? 'open' : ''}`}>
+          <ul class="flex space-x-4">
+            <li><a href="#features" class="text-gray-700 hover:text-blue-600">Features</a></li>
+            <li><a href="#about" class="text-gray-700 hover:text-blue-600">About</a></li>
+            <li><a href="#contact" class="text-gray-700 hover:text-blue-600">Contact</a></li>
+          </ul>
+        </nav>
+        <button onClick={toggleMenu} class="md:hidden">
+          {isMenuOpen ? 'Close' : 'Menu'}
+        </button>
+      </div>
+    </header>
+  );
+};
+
+export default Header;
+---

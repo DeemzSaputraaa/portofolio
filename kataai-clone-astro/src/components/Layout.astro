@@ -1,0 +1,13 @@
+---
+import Header from './Header.astro';
+import Footer from './Footer.astro';
+
+const { children } = Astro.props;
+
+---
+
+<Header />
+<main>
+  {children}
+</main>
+<Footer />
