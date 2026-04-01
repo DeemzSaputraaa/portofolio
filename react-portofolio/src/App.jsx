@@ -4,6 +4,9 @@ import Header from "./components/Header";
 import Hero from "./components/Hero";
 import About from "./components/About";
 import Marquee from "./components/Marquee";
+import PortfolioShowcase from "./components/PortfolioShowcase";
+import Contact from "./components/Contact";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -19,7 +22,10 @@ function App() {
         <Hero />
         <Marquee />
         <About />
+        <PortfolioShowcase />
+        <Contact />
       </ClickSpark>
+      <Footer />
     </>
   );
 }
