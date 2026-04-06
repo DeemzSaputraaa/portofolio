@@ -60,6 +60,7 @@ const skillsData = [
 
 const PortfolioShowcase = () => {
   const [activeTab, setActiveTab] = useState('projects');
+  const [selectedItem, setSelectedItem] = useState(null);
 
   const renderProjectsGrid = (data) => (
     <div className="showcase-grid">
@@ -76,10 +77,10 @@ const PortfolioShowcase = () => {
                 Live Demo 
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
               </a>
-              <a href={item.detailsLink} className="card-link-details" target="_blank" rel="noopener noreferrer">
+              <button onClick={() => setSelectedItem(item)} className="card-link-details" style={{background: 'transparent', border: 'none', padding: 0, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '6px' }}>
                 Details 
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-              </a>
+              </button>
             </div>
           </div>
         </div>
@@ -138,6 +139,35 @@ const PortfolioShowcase = () => {
           </div>
         )}
       </div>
+
+      {/* Details Modal */}
+      {selectedItem && (
+        <div className="portfolio-modal-overlay" onClick={() => setSelectedItem(null)}>
+          <div className="portfolio-modal-content" onClick={(e) => e.stopPropagation()}>
+            <button className="portfolio-modal-close" onClick={() => setSelectedItem(null)}>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+            </button>
+            <div className="portfolio-modal-image-container">
+              <img src={selectedItem.image} alt={selectedItem.title} className="portfolio-modal-image" />
+            </div>
+            <div className="portfolio-modal-body">
+              <h3 className="portfolio-modal-title">{selectedItem.title}</h3>
+              <p className="portfolio-modal-desc">
+                {selectedItem.description}
+                <br /><br />
+                Proyek / pencapaian ini merupakan salah satu tonggak penting dalam perjalanan saya. Dirancang dengan fokus pada efisiensi, desain modern, dan pengalaman pengguna yang responsif.
+              </p>
+              
+              <div className="portfolio-modal-actions">
+                <a href={selectedItem.demoLink} className="card-link" target="_blank" rel="noopener noreferrer">
+                  Live Demo 
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };

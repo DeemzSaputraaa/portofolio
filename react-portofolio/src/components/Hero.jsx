@@ -1,3 +1,4 @@
+import sayaImg3 from '../assets/images/saya3.png';
 import ShinyText from "../ShinyText";
 import RotatingText from "../RotatingText";
 import LiquidEther from "../LiquidEther";
@@ -51,7 +52,7 @@ const Hero = () => {
 
         <section className="hero-center" aria-hidden="true">
           <div className="portrait-wrap">
-            Gambar saya
+            <img src={sayaImg3} alt="Dimas Edwin Saputra" className="portrait-image" />
           </div>
         </section>
 

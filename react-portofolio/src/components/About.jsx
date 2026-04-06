@@ -1,3 +1,5 @@
+import sayaImg from '../assets/images/saya2.png';
+
 const About = () => {
   return (
     <section id="about" className="about-section">
@@ -25,9 +27,9 @@ const About = () => {
           </div>
         </div>
       </div>
-      {/* <div className="about-lanyard">
-        <Lanyard position={[0, 0, 20]} gravity={[0, -40, 0]} />
-      </div> */}
+      <div className="about-image-container">
+        <img src={sayaImg} alt="Tentang Saya" className="about-image" />
+      </div>
     </section>
   );
 };
