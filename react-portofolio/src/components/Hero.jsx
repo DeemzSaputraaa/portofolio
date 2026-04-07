@@ -36,7 +36,7 @@ const Hero = () => {
           <div className="role-list">
             <span className="role-label">Creative</span>
             <RotatingText
-              texts={["Insinyur TI", "Pengembang Web", "Insinyur Data"]}
+              texts={["Full Stack Developer", "Data Scientist", "Data Analyst", "UI/UX Designer"]}
               mainClassName="rotating-role rotating-pill"
               staggerFrom="last"
               initial={{ y: "100%" }}
@@ -57,7 +57,7 @@ const Hero = () => {
         </section>
 
         <section className="hero-right">
-          <p className="tag">Insinyur TI</p>
+          {/* <p className="tag">Insinyur TI</p> */}
           <h2>
             Saya
             <span>

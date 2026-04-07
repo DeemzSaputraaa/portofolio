@@ -1,68 +1,12 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { projectsData, certificatesData, skillsData } from '../data/projectsData';
 import '../styles/PortfolioShowcase.css';
-
-const projectsData = [
-  {
-    id: 1,
-    title: "Aritmatika Solver",
-    description: "Program ini dirancang untuk mempermudah pengguna dalam menyelesaikan soal-soal Aritmatika secara otomati...",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop",
-    demoLink: "#",
-    detailsLink: "#"
-  },
-  {
-    id: 2,
-    title: "AutoChat-Discord",
-    description: "AutoChat adalah solusi otomatisasi untuk mengirim pesan ke saluran Discord secara terjadwal. Pengguna dapat...",
-    image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=800&auto=format&fit=crop",
-    demoLink: "#",
-    detailsLink: "#"
-  },
-  {
-    id: 3,
-    title: "Buku Catatan",
-    description: "Buku Catatan adalah website yang memungkinkan pengguna untuk membuat, menyimpan, dan mengelola...",
-    image: "https://images.unsplash.com/photo-1675271591211-126ad94e4958?q=80&w=800&auto=format&fit=crop",
-    demoLink: "#",
-    detailsLink: "#"
-  }
-];
-
-const certificatesData = [
-  {
-    id: 1,
-    title: "Frontend Developer Certificate",
-    description: "Sertifikasi resmi pengembangan web frontend dengan React dan teknologi modern lainnya.",
-    image: "https://images.unsplash.com/photo-1523289333742-be1143f6b766?q=80&w=800&auto=format&fit=crop",
-    demoLink: "#",
-    detailsLink: "#"
-  },
-  {
-    id: 2,
-    title: "UI/UX Design Masterclass",
-    description: "Pelatihan komprehensif tentang desain antarmuka pengguna dan pengalaman pengguna menggunakan Figma.",
-    image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=800&auto=format&fit=crop",
-    demoLink: "#",
-    detailsLink: "#"
-  }
-];
-
-const skillsData = [
-  { name: 'React', icon: '⚛️' },
-  { name: 'JavaScript', icon: '💛' },
-  { name: 'HTML5', icon: '🧱' },
-  { name: 'CSS3', icon: '🎨' },
-  { name: 'Node.js', icon: '🟩' },
-  { name: 'Tailwind', icon: '💨' },
-  { name: 'Git', icon: '📁' },
-  { name: 'Figma', icon: '🖋️' }
-];
 
 const PortfolioShowcase = () => {
   const [activeTab, setActiveTab] = useState('projects');
-  const [selectedItem, setSelectedItem] = useState(null);
 
-  const renderProjectsGrid = (data) => (
+  const renderProjectsGrid = (data, isProject = false) => (
     <div className="showcase-grid">
       {data.map((item) => (
         <div key={item.id} className="showcase-card">
@@ -71,16 +15,23 @@ const PortfolioShowcase = () => {
           </div>
           <div className="card-content">
             <h3 className="card-title">{item.title}</h3>
-            <p className="card-desc">{item.description}</p>
+            <p className="card-desc">{item.shortDescription || item.description}</p>
             <div className="card-footer">
               <a href={item.demoLink} className="card-link" target="_blank" rel="noopener noreferrer">
                 Live Demo 
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
               </a>
-              <button onClick={() => setSelectedItem(item)} className="card-link-details" style={{background: 'transparent', border: 'none', padding: 0, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                Details 
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-              </button>
+              {isProject && item.slug ? (
+                <Link to={`/project/${item.slug}`} className="card-link-details">
+                  Details 
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </Link>
+              ) : (
+                <span className="card-link-details" style={{ cursor: 'default', opacity: 0.4 }}>
+                  Details 
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </span>
+              )}
             </div>
           </div>
         </div>
@@ -124,9 +75,9 @@ const PortfolioShowcase = () => {
       </div>
 
       <div className="showcase-content">
-        {activeTab === 'projects' && renderProjectsGrid(projectsData)}
+        {activeTab === 'projects' && renderProjectsGrid(projectsData, true)}
         
-        {activeTab === 'certificates' && renderProjectsGrid(certificatesData)}
+        {activeTab === 'certificates' && renderProjectsGrid(certificatesData, false)}
         
         {activeTab === 'tech' && (
           <div className="showcase-skills-grid">
@@ -139,35 +90,6 @@ const PortfolioShowcase = () => {
           </div>
         )}
       </div>
-
-      {/* Details Modal */}
-      {selectedItem && (
-        <div className="portfolio-modal-overlay" onClick={() => setSelectedItem(null)}>
-          <div className="portfolio-modal-content" onClick={(e) => e.stopPropagation()}>
-            <button className="portfolio-modal-close" onClick={() => setSelectedItem(null)}>
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
-            </button>
-            <div className="portfolio-modal-image-container">
-              <img src={selectedItem.image} alt={selectedItem.title} className="portfolio-modal-image" />
-            </div>
-            <div className="portfolio-modal-body">
-              <h3 className="portfolio-modal-title">{selectedItem.title}</h3>
-              <p className="portfolio-modal-desc">
-                {selectedItem.description}
-                <br /><br />
-                Proyek / pencapaian ini merupakan salah satu tonggak penting dalam perjalanan saya. Dirancang dengan fokus pada efisiensi, desain modern, dan pengalaman pengguna yang responsif.
-              </p>
-              
-              <div className="portfolio-modal-actions">
-                <a href={selectedItem.demoLink} className="card-link" target="_blank" rel="noopener noreferrer">
-                  Live Demo 
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </section>
   );
 };
