@@ -5,6 +5,7 @@ import '../styles/PortfolioShowcase.css';
 
 const PortfolioShowcase = () => {
   const [activeTab, setActiveTab] = useState('projects');
+  const [showAllProjects, setShowAllProjects] = useState(false);
 
   const renderProjectsGrid = (data, isProject = false) => (
     <div className="showcase-grid">
@@ -75,7 +76,18 @@ const PortfolioShowcase = () => {
       </div>
 
       <div className="showcase-content">
-        {activeTab === 'projects' && renderProjectsGrid(projectsData, true)}
+        {activeTab === 'projects' && (
+          <>
+            {renderProjectsGrid(showAllProjects ? projectsData : projectsData.slice(0, 6), true)}
+            {!showAllProjects && projectsData.length > 6 && (
+              <div className="view-all-container">
+                <button className="view-all-btn" onClick={() => setShowAllProjects(true)}>
+                  Lihat Semua
+                </button>
+              </div>
+            )}
+          </>
+        )}
         
         {activeTab === 'certificates' && renderProjectsGrid(certificatesData, false)}
         

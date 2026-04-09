@@ -162,7 +162,6 @@ const ProjectDetail = () => {
         <div className="detail-other-grid">
           {projectsData
             .filter(p => p.id !== project.id)
-            .slice(0, 2)
             .map(otherProject => (
               <Link
                 key={otherProject.id}
