@@ -9,6 +9,7 @@ import PortfolioShowcase from "./components/PortfolioShowcase";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import ProjectDetail from "./pages/ProjectDetail";
+import ChatWidget from "./components/ChatWidget";
 
 function HomePage() {
   return (
@@ -34,10 +35,13 @@ function HomePage() {
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/project/:slug" element={<ProjectDetail />} />
-    </Routes>
+    <>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/project/:slug" element={<ProjectDetail />} />
+      </Routes>
+      <ChatWidget />
+    </>
   );
 }
 
