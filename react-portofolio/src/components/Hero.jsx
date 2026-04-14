@@ -65,7 +65,7 @@ const Hero = () => {
                 text="Dimas Edwin Saputra"
                 speed={2}
                 delay={0}
-                color="#ffffff"
+                color="var(--text)"
                 shineColor="#898989"
                 direction="left"
               />

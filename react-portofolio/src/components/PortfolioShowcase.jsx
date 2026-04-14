@@ -43,6 +43,7 @@ const PortfolioShowcase = () => {
   return (
     <section className="portfolio-showcase-section" id="portfolio">
       <div className="showcase-header">
+        <p className="showcase-eyebrow">PORTFOLIO</p>
         <h2 className="showcase-title">Portfolio Showcase</h2>
         <p className="showcase-desc">
           Explore my journey through projects, certifications, and technical expertise. Each section represents a milestone in my continuous learning path.

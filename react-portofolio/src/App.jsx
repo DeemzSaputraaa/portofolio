@@ -4,6 +4,7 @@ import ClickSpark from "./ClickSpark";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import About from "./components/About";
+import Education from "./components/Education";
 import Marquee from "./components/Marquee";
 import PortfolioShowcase from "./components/PortfolioShowcase";
 import Contact from "./components/Contact";
@@ -25,6 +26,7 @@ function HomePage() {
         <Hero />
         <Marquee />
         <About />
+        <Education />
         <PortfolioShowcase />
         <Contact />
       </ClickSpark>

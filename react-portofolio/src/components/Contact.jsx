@@ -6,6 +6,7 @@ const Contact = () => {
     <section className="contact-section" id="contact">
       {/* Header */}
       <div className="contact-header">
+        <p className="about-eyebrow">HUBUNGI SAYA</p>
         <h2 className="contact-title">
           Hubungi <span className="contact-title-highlight">Saya</span>
         </h2>

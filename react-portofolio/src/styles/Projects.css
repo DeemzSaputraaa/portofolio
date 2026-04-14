@@ -1,6 +1,6 @@
 .projects-section {
   padding: 80px 20px;
-  background: #0a0a0e;
+  background: var(--bg-secondary);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -48,7 +48,7 @@
 
 .project-card:hover {
   transform: translateY(-8px);
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--border-color);
   border-color: rgba(255, 255, 255, 0.15);
 }
 
@@ -129,7 +129,7 @@
 
 .btn-link.primary {
   background: #fff;
-  color: #0c0c10;
+  color: var(--bg-primary);
 }
 
 .btn-link:hover {

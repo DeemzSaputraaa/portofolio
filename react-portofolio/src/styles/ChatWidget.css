@@ -70,7 +70,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid var(--border-color);
 }
 
 .chat-header-info {
@@ -184,7 +184,7 @@
 .chat-input-form {
   padding: 16px;
   background-color: #111827;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 1px solid var(--border-color);
   display: flex;
   gap: 10px;
 }

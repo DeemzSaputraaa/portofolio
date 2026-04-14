@@ -1,7 +1,7 @@
 .footer {
   padding: 32px 20px;
-  background: #0c0c10;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  background: var(--bg-primary);
+  border-top: 1px solid var(--border-color);
   display: flex;
   justify-content: center;
 }
@@ -19,7 +19,7 @@
 .footer-logo {
   font-family: var(--font-display);
   font-weight: 700;
-  color: #fff;
+  color: var(--text);
   font-size: 1.2rem;
 }
 
