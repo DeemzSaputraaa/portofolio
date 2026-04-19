@@ -7,6 +7,7 @@ import About from "./components/About";
 import Education from "./components/Education";
 import Marquee from "./components/Marquee";
 import PortfolioShowcase from "./components/PortfolioShowcase";
+import GithubActivity from "./components/GithubActivity";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import ProjectDetail from "./pages/ProjectDetail";
@@ -31,6 +32,7 @@ function HomePage() {
         <About />
         <Education />
         <PortfolioShowcase />
+        <GithubActivity />
         <Contact />
       </ClickSpark>
       <Footer />
