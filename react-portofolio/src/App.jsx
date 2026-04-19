@@ -11,13 +11,16 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import ProjectDetail from "./pages/ProjectDetail";
 import ChatWidget from "./components/ChatWidget";
+import { ThemeProvider, useTheme } from "./context/ThemeContext";
 
 function HomePage() {
+  const { isDarkMode } = useTheme();
+
   return (
     <>
       <Header />
       <ClickSpark
-        sparkColor="#fff"
+        sparkColor={isDarkMode ? "#fff" : "#000"}
         sparkSize={10}
         sparkRadius={15}
         sparkCount={8}
@@ -35,15 +38,19 @@ function HomePage() {
   );
 }
 
+import { LanguageProvider } from "./context/LanguageContext";
+
 function App() {
   return (
-    <>
-      <Routes>
+    <ThemeProvider>
+      <LanguageProvider>
+        <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/project/:slug" element={<ProjectDetail />} />
       </Routes>
       <ChatWidget />
-    </>
+      </LanguageProvider>
+    </ThemeProvider>
   );
 }
 

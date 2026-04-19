@@ -1,18 +1,21 @@
 import React from 'react';
 import '../styles/Contact.css';
+import { useLanguage } from '../context/LanguageContext';
 
 const Contact = () => {
+  const { t } = useLanguage();
+
   return (
     <section className="contact-section" id="contact">
       {/* Header */}
       <div className="contact-header">
-        <p className="about-eyebrow">HUBUNGI SAYA</p>
+        <p className="about-eyebrow">{t('contact', 'eyebrow')}</p>
         <h2 className="contact-title">
-          Hubungi <span className="contact-title-highlight">Saya</span>
+          {t('contact', 'pageTitle')} <span className="contact-title-highlight">{t('contact', 'pageTitleHighlight')}</span>
         </h2>
         <div className="contact-title-underline"></div>
         <p className="contact-desc">
-          Tertarik bekerja sama? Jangan ragu untuk menghubungi saya. Saya selalu terbuka untuk mendiskusikan proyek baru, ide kreatif, atau kesempatan untuk menjadi bagian dari visi Anda.
+          {t('contact', 'pageDesc')}
         </p>
       </div>
 
@@ -55,8 +58,8 @@ const Contact = () => {
               </svg>
             </div>
             <div className="contact-card-content">
-              <span className="contact-card-label">LOKASI</span>
-              <span className="contact-card-value">Special Region of Yogyakarta, Indonesia</span>
+              <span className="contact-card-label">{t('contact', 'locLabel')}</span>
+              <span className="contact-card-value">{t('contact', 'locValue')}</span>
             </div>
           </div>
         </div>
@@ -64,21 +67,21 @@ const Contact = () => {
         {/* Right: CTA Card */}
         <div className="contact-cta-card" id="contact-cta-card">
           <h3 className="contact-cta-title">
-            Mari bekerja <span className="contact-cta-highlight">sama</span>
+            {t('contact', 'ctaTitle')} <span className="contact-cta-highlight">{t('contact', 'ctaHighlight')}</span>
           </h3>
           <p className="contact-cta-desc">
-            Apakah Anda membutuhkan bantuan dalam administrasi database, proyek AI/ML, atau solusi computer vision, saya siap berkolaborasi dan mewujudkan ide Anda.
+            {t('contact', 'ctaDesc')}
           </p>
           <a href="mailto:dimasedwinsaputra@gmail.com" className="contact-cta-btn-primary" id="contact-send-email-btn">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <rect x="2" y="4" width="20" height="16" rx="2"/>
               <path d="M22 7l-10 6L2 7"/>
             </svg>
-            Kirim Email
+            {t('contact', 'btnEmail')}
             <span className="contact-cta-btn-arrow">↗</span>
           </a>
           <a href="/cv-dimasedwinsaputra.pdf" download className="contact-cta-btn-secondary" id="contact-download-cv-btn">
-            Unduh CV Saya
+            {t('contact', 'btnDownloadCv')}
           </a>
         </div>
       </div>
@@ -87,3 +90,4 @@ const Contact = () => {
 };
 
 export default Contact;
+

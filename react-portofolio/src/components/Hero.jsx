@@ -2,8 +2,11 @@ import sayaImg3 from '../assets/images/saya3.png';
 import ShinyText from "../ShinyText";
 import RotatingText from "../RotatingText";
 import LiquidEther from "../LiquidEther";
+import { useLanguage } from '../context/LanguageContext';
 
 const Hero = () => {
+  const { t } = useLanguage();
+
   return (
     <main className="hero-wrapper">
       <div className="hero-ether-bg">
@@ -28,13 +31,12 @@ const Hero = () => {
       </div>
       <div className="hero">
         <section className="hero-left">
-          <p className="eyebrow">Halo,</p>
+          <p className="eyebrow">{t('hero', 'greeting')}</p>
           <p className="subtext">
-            Saya fokus membangun produk digital yang rapi, cepat, dan siap
-            berkembang. Frontend, backend, dan data - semua terintegrasi.
+            {t('hero', 'subtext')}
           </p>
           <div className="role-list">
-            <span className="role-label">Creative</span>
+            <span className="role-label">{t('hero', 'roleIntro')}</span>
             <RotatingText
               texts={["Full Stack Developer", "Data Scientist", "Data Analyst", "UI/UX Designer"]}
               mainClassName="rotating-role rotating-pill"
@@ -59,7 +61,7 @@ const Hero = () => {
         <section className="hero-right">
           {/* <p className="tag">Insinyur TI</p> */}
           <h2>
-            Saya
+            {t('hero', 'namePre')}
             <span>
               <ShinyText
                 text="Dimas Edwin Saputra"
@@ -78,3 +80,4 @@ const Hero = () => {
 };
 
 export default Hero;
+

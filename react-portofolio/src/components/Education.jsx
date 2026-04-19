@@ -1,6 +1,7 @@
 import '../styles/Education.css';
+import { useLanguage } from '../context/LanguageContext';
 
-const educationData = [
+const educationDataID = [
   {
     id: 1,
     period: '2022 - 2026',
@@ -19,62 +20,124 @@ const educationData = [
   },
   {
     id: 3,
-    period: '2018 - 2021',
+    period: '2015 - 2018',
     degree: 'MTs Negeri 1 Temanggung',
     institution: 'MTs Negeri 1 Temanggung',
-    description: 'Mempelajari dasar-dasar pemrograman, web development, dan rekayasa perangkat lunak.',
+    description: 'Menyelesaikan pendidikan menengah pertama dengan berbagai kegiatan akademik dan ekstrakurikuler.',
     type: 'school',
   },
   {
     id: 4,
-    period: '2018 - 2021',
+    period: '2009 - 2015',
     degree: 'SD Negeri Mandisari',
     institution: 'SD Negeri Mandisari',
-    description: 'Mempelajari dasar-dasar pemrograman, web development, dan rekayasa perangkat lunak.',
+    description: 'Menyelesaikan pendidikan dasar dengan fondasi yang kuat dalam matematika dan sains.',
     type: 'school',
   },
 ];
 
-const awardsData = [
+const educationDataEN = [
+  {
+    id: 1,
+    period: '2022 - 2026',
+    degree: 'Bachelor of Information Technology',
+    institution: "Universitas 'Aisyiyah Yogyakarta",
+    description: 'Graduated with a GPA of 3.9/4.0. Focused on software development, databases, and information systems.',
+    type: 'university',
+  },
+  {
+    id: 2,
+    period: '2018 - 2021',
+    degree: 'Vocational High School – Software Engineering',
+    institution: 'SMKN 1 Sukabumi',
+    description: 'Studied foundations of programming, web development, and software engineering.',
+    type: 'school',
+  },
+  {
+    id: 3,
+    period: '2015 - 2018',
+    degree: 'MTs Negeri 1 Temanggung',
+    institution: 'MTs Negeri 1 Temanggung',
+    description: 'Completed junior high education with various academic and extracurricular activities.',
+    type: 'school',
+  },
+  {
+    id: 4,
+    period: '2009 - 2015',
+    degree: 'SD Negeri Mandisari',
+    institution: 'SD Negeri Mandisari',
+    description: 'Completed primary education with a strong foundation in mathematics and science.',
+    type: 'school',
+  },
+];
+
+const awardsDataID = [
   {
     id: 1,
     year: '2026',
     title: 'Lulusan Terbaik Akademik dan Non-Akademik Periode Oktober 2026',
     institution: "Universitas 'Aisyiyah Yogyakarta",
-    description:
-      'Meraih prestasi akademik dengan perolehan IPK 3.9/4.0',
+    description: 'Meraih prestasi akademik dengan perolehan IPK 3.9/4.0',
     icon: 'star',
-    // image: piagamImg,
   },
   {
     id: 2,
     year: '2026',
     title: 'Lulusan Terbaik Akademik dan Non-Akademik Periode Oktober 2026',
     institution: "Universitas 'Aisyiyah Yogyakarta",
-    description:
-      'Meraih prestasi akademik dengan perolehan IPK 3.9/4.0',
+    description: 'Meraih prestasi akademik dengan perolehan IPK 3.9/4.0',
     icon: 'award',
-    // image: piagamImg,
   },
   {
     id: 3,
     year: '2026',
     title: 'Lulusan Terbaik Akademik dan Non-Akademik Periode Oktober 2026',
     institution: "Universitas 'Aisyiyah Yogyakarta",
-    description:
-      'Meraih prestasi akademik dengan perolehan IPK 3.9/4.0',
+    description: 'Meraih prestasi akademik dengan perolehan IPK 3.9/4.0',
     icon: 'star',
-    // image: piagamImg,
   },
   {
     id: 4,
     year: '2026',
     title: 'Lulusan Terbaik Akademik dan Non-Akademik Periode Oktober 2026',
     institution: "Universitas 'Aisyiyah Yogyakarta",
-    description:
-      'Meraih prestasi akademik dengan perolehan IPK 3.9/4.0',
+    description: 'Meraih prestasi akademik dengan perolehan IPK 3.9/4.0',
     icon: 'award',
-    // image: piagamImg,
+  },
+];
+
+const awardsDataEN = [
+  {
+    id: 1,
+    year: '2026',
+    title: 'Best Academic and Non-Academic Graduate – October 2026',
+    institution: "Universitas 'Aisyiyah Yogyakarta",
+    description: 'Achieved academic excellence with a GPA of 3.9/4.0',
+    icon: 'star',
+  },
+  {
+    id: 2,
+    year: '2026',
+    title: 'Best Academic and Non-Academic Graduate – October 2026',
+    institution: "Universitas 'Aisyiyah Yogyakarta",
+    description: 'Achieved academic excellence with a GPA of 3.9/4.0',
+    icon: 'award',
+  },
+  {
+    id: 3,
+    year: '2026',
+    title: 'Best Academic and Non-Academic Graduate – October 2026',
+    institution: "Universitas 'Aisyiyah Yogyakarta",
+    description: 'Achieved academic excellence with a GPA of 3.9/4.0',
+    icon: 'star',
+  },
+  {
+    id: 4,
+    year: '2026',
+    title: 'Best Academic and Non-Academic Graduate – October 2026',
+    institution: "Universitas 'Aisyiyah Yogyakarta",
+    description: 'Achieved academic excellence with a GPA of 3.9/4.0',
+    icon: 'award',
   },
 ];
 
@@ -106,28 +169,23 @@ const UniversityIcon = () => (
 );
 
 const Education = () => {
+  const { t, language } = useLanguage();
+
+  const educationData = language === 'ID' ? educationDataID : educationDataEN;
+  const awardsData = language === 'ID' ? awardsDataID : awardsDataEN;
+
   return (
     <section className="education-section" id="education">
 
-      {/* Single centered top header — same style as Portfolio Showcase */}
       <div className="edu-section-header">
-        <p className="showcase-eyebrow">PENDIDIKAN &amp; PENGHARGAAN</p>
-        <h2 className="edu-showcase-title">Pendidikan</h2>
-        {/* <p className="edu-showcase-desc">
-          Catatan perjalanan akademik dan pencapaian saya, mulai dari riwayat pendidikan formal hingga penghargaan yang pernah diraih.
-        </p> */}
+        <p className="showcase-eyebrow">{t('edu', 'eyebrow')}</p>
+        <h2 className="edu-showcase-title">{t('edu', 'title')}</h2>
       </div>
 
-      {/* Two-column grid */}
       <div className="edu-grid">
 
-        {/* Left: Pendidikan */}
+        {/* Left: Education */}
         <div className="edu-column">
-          {/* <div className="edu-column-header">
-            <span className="edu-header-line"></span>
-            <h3>Pendidikan</h3>
-          </div> */}
-
           <div className="edu-timeline">
             {educationData.map((item) => (
               <div key={item.id} className="edu-item">
@@ -152,11 +210,11 @@ const Education = () => {
           </div>
         </div>
 
-        {/* Right: Penghargaan & Apresiasi */}
+        {/* Right: Awards */}
         <div className="award-column">
           <div className="edu-column-header">
             <span className="edu-header-line"></span>
-            <h2>Penghargaan &amp; Apresiasi</h2>
+            <h2>{t('edu', 'awardSubtitle')}</h2>
           </div>
 
           <div className="award-grid">
@@ -176,7 +234,7 @@ const Education = () => {
                 {item.image ? (
                   <div className="award-proof">
                     <img src={item.image} alt={item.title} className="award-proof-img" />
-                    <span className="award-proof-label">Lihat bukti penghargaan</span>
+                    <span className="award-proof-label">{t('edu', 'proofBtn')}</span>
                   </div>
                 ) : (
                   <button className="award-proof-btn">
@@ -184,7 +242,7 @@ const Education = () => {
                       <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                       <polyline points="14 2 14 8 20 8"></polyline>
                     </svg>
-                    Lihat bukti penghargaan
+                    {t('edu', 'proofBtn')}
                   </button>
                 )}
               </div>
@@ -198,3 +256,4 @@ const Education = () => {
 };
 
 export default Education;
+

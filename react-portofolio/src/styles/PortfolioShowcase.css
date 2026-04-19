@@ -194,11 +194,25 @@
 }
 
 /* Skills override */
+.showcase-skills-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  animation: fadeIn 0.4s ease-out;
+}
+
+.showcase-tech-desc {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
 .showcase-skills-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   gap: 20px;
-  animation: fadeIn 0.4s ease-out;
 }
 
 .showcase-skill-card {

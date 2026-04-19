@@ -1,17 +1,9 @@
-import { useState } from 'react';
+import { useLanguage } from '../context/LanguageContext';
+import { useTheme } from '../context/ThemeContext';
 
 const Header = () => {
-  const [isDarkMode, setIsDarkMode] = useState(true);
-  const [language, setLanguage] = useState('ID');
-
-  const toggleTheme = () => {
-    setIsDarkMode(!isDarkMode);
-    document.body.classList.toggle('light-mode');
-  };
-
-  const toggleLanguage = () => {
-    setLanguage(language === 'ID' ? 'EN' : 'ID');
-  };
+  const { isDarkMode, toggleTheme } = useTheme();
+  const { language, toggleLanguage, t } = useLanguage();
 
   return (
     <header className="header">
@@ -19,10 +11,10 @@ const Header = () => {
         <span className="brand-name">Dimas Edwin Saputra</span>
       </div>
       <nav className="nav-pill">
-        <a href="#about">Tentang</a>
-        <a href="#education">Pendidikan</a>
-        <a href="#portfolio">Portofolio</a>
-        <a href="#contact">Kontak</a>
+        <a href="#about">{t('header', 'about')}</a>
+        <a href="#education">{t('header', 'edu')}</a>
+        <a href="#portfolio">{t('header', 'port')}</a>
+        <a href="#contact">{t('header', 'contact')}</a>
       </nav>
 
       <div className="header-actions">
@@ -54,7 +46,7 @@ const Header = () => {
           </button>
         </div>
 
-        <button className="cta">Rekrut Saya</button>
+        <button className="cta">{t('header', 'hire')}</button>
       </div>
     </header>
   );
