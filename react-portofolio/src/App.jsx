@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+import { HelmetProvider, Helmet } from "react-helmet-async";
 import "./styles/App.css";
 import ClickSpark from "./ClickSpark";
 import Header from "./components/Header";
@@ -19,6 +20,10 @@ function HomePage() {
 
   return (
     <>
+      <Helmet>
+        <title>Dimas Edwin Saputra - Portfolio</title>
+        <meta name="description" content="Portfolio dari Dimas Edwin Saputra. Spesialis Frontend, Backend, AI/ML, dan Administrasi Database." />
+      </Helmet>
       <Header />
       <ClickSpark
         sparkColor={isDarkMode ? "#fff" : "#000"}
@@ -44,15 +49,17 @@ import { LanguageProvider } from "./context/LanguageContext";
 
 function App() {
   return (
-    <ThemeProvider>
-      <LanguageProvider>
-        <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/project/:slug" element={<ProjectDetail />} />
-      </Routes>
-      <ChatWidget />
-      </LanguageProvider>
-    </ThemeProvider>
+    <HelmetProvider>
+      <ThemeProvider>
+        <LanguageProvider>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/project/:slug" element={<ProjectDetail />} />
+          </Routes>
+          <ChatWidget />
+        </LanguageProvider>
+      </ThemeProvider>
+    </HelmetProvider>
   );
 }
 

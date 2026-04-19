@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { projectsData } from '../data/projectsData';
+import { Helmet } from 'react-helmet-async';
+import { getProjectsData } from '../data/projectsData';
+import { useLanguage } from '../context/LanguageContext';
 import '../styles/ProjectDetail.css';
 
 const ProjectDetail = () => {
   const { slug } = useParams();
+  const { language } = useLanguage();
+  const dynamicProjects = getProjectsData(language);
   const [activeImage, setActiveImage] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
 
-  const project = projectsData.find(p => p.slug === slug);
+  const project = dynamicProjects.find(p => p.slug === slug);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -34,6 +38,11 @@ const ProjectDetail = () => {
 
   return (
     <div className={`project-detail-page ${isLoaded ? 'loaded' : ''}`}>
+      <Helmet>
+        <title>{project.title} - Dimas Edwin Saputra</title>
+        <meta name="description" content={project.shortDescription} />
+      </Helmet>
+
       {/* Header / Navigation */}
       <nav className="detail-nav">
         <Link to="/" className="detail-back-link">
@@ -160,7 +169,7 @@ const ProjectDetail = () => {
       <section className="detail-other-section">
         <h2 className="detail-other-title">Project Lainnya</h2>
         <div className="detail-other-grid">
-          {projectsData
+          {dynamicProjects
             .filter(p => p.id !== project.id)
             .map(otherProject => (
               <Link
